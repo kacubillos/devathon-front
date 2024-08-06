@@ -1,5 +1,6 @@
 // import { useRolePermissionStore } from "../store/rolePermission.store";
 import rolePermissionService from "../services/rolePermission";
+import { useRolePermissionStore } from "../store/rolePermission.store";
 import { RolePermissionRequest, RolePermissionsResponse } from "../types/rolePermission.types";
 
 const useRolePermission = () => {

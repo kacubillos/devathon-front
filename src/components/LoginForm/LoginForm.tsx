@@ -21,7 +21,7 @@ export const LoginForm = () => {
       showNotification("Login successful", 3000, "success");
       navigate("/dashboard");
     } catch (error) {
-      //
+      showNotification(error.message, 3000, "error");
     }
   };
 

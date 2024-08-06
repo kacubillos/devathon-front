@@ -20,7 +20,7 @@ export const RolesView = () => {
         <h1>Roles</h1>
         <div>
           <Link to="create" className="btn-primary">
-            + Nuevo
+            + New
           </Link>
         </div>
       </div>

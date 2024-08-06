@@ -28,10 +28,10 @@ export const CreateRoleView = () => {
 
       {/** content */}
       <div className="flex-auto px-8">
-        <h1 className="text-3xl">Crear un nuevo rol</h1>
+        <h1 className="text-3xl">Create new role</h1>
         <div className="mt-8 flex w-full flex-col space-y-4 rounded-md border-solid border-neutral-200 px-4 py-8 shadow-lg">
           <div className="flex flex-col">
-            <label className="mb-2 text-sm font-medium text-neutral-700">Nombre</label>
+            <label className="mb-2 text-sm font-medium text-neutral-700">Name</label>
             <input
               type="text"
               className="h-10 rounded-md bg-neutral-200 p-4 focus:bg-blue-200"
@@ -40,7 +40,7 @@ export const CreateRoleView = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label className="mb-2 text-sm font-medium text-neutral-700">Descripción</label>
+            <label className="mb-2 text-sm font-medium text-neutral-700">Description</label>
             <textarea
               className="rounded-md bg-neutral-200 p-4 focus:bg-blue-200"
               value={data.description}

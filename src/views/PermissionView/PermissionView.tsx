@@ -17,10 +17,10 @@ export const PermissionView = () => {
   return (
     <div className="flex h-full flex-col">
       <div className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-neutral-200 p-4">
-        <h1>Permisos</h1>
+        <h1>Permissions</h1>
         <div>
           <Link to="create" className="btn-primary">
-            + Nuevo
+            + New
           </Link>
         </div>
       </div>

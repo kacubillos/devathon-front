@@ -9,7 +9,7 @@ export const SideMenu: React.FC = () => {
   return (
     <nav className={`${isNavExpanded ? "max-nav-width" : "min-nav-width"} side-menu`}>
       <ul className="nav-wrapper">
-        <NavItem to="home" label="Inicio" compact={!isNavExpanded} hasIcon={true}>
+        <NavItem to="home" label="Home" compact={!isNavExpanded} hasIcon={true}>
           <span className="home-icon"></span>
         </NavItem>
         <NavItem
@@ -32,7 +32,7 @@ export const SideMenu: React.FC = () => {
         </NavItem>
         <NavItem
           to="permissions"
-          label="Permisos"
+          label="Permissions"
           compact={!isNavExpanded}
           hasIcon={false}
           className="nav-item-hover"

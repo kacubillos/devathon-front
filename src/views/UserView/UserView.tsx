@@ -16,9 +16,9 @@ export const UserView = () => {
   return (
     <div className="flex h-full flex-col">
       <div className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-neutral-200 p-4">
-        <h1>Usuarios</h1>
+        <h1>Users</h1>
         <div>
-          <button className="btn-primary">+ Nuevo</button>
+          <button className="btn-primary">+ New</button>
         </div>
       </div>
       {/* content users list */}
@@ -26,12 +26,12 @@ export const UserView = () => {
         {users.map((user) => (
           <div
             key={user.id}
-            className="m-4 flex h-60 w-60 flex-col rounded-lg border-neutral-200 p-4 shadow-xl"
+            className="m-4 flex h-48 w-48 flex-col rounded-lg border-neutral-200 p-4 shadow-xl"
           >
             <span className="avatar-icon self-center"></span>
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-lg">{user.username}</h2>
+                <h2 className="text-md">{user.username}</h2>
               </div>
             </div>
           </div>

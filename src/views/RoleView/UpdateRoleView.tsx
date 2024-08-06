@@ -1,11 +1,11 @@
 /*eslint no-unused-vars: ["error", { "args": "none" }]*/
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useShallow } from "zustand/react/shallow";
+//import { useShallow } from "zustand/react/shallow";
 import { BackTo } from "../../components/BackTo/BackTo";
 import { Switcher } from "../../components/Switcher/Switcher";
 //store
-import { useRolesStore } from "../../store/roles.store";
+//import { useRolesStore } from "../../store/roles.store";
 import { usePermissionsStore } from "../../store/permissions.store";
 import { useRolePermissionStore } from "../../store/rolePermission.store";
 //hooks
@@ -13,11 +13,12 @@ import useRolePermission from "../../hooks/useRolePermission";
 import usePermissions from "../../hooks/usePermissions";
 import { RolePermission } from "../../types";
 //import rolePermission from "../../services/rolePermission";
+import useNotification from "../../hooks/useNotification";
 
 export const UpdateRoleView = () => {
   const { id } = useParams();
   //roles
-  const role = useRolesStore(useShallow((state) => state.getRolById(Number(id))));
+  //const role = useRolesStore(useShallow((state) => state.getRolById(Number(id))));
   //permissions
   const permissions = usePermissionsStore((state) => state.permissions);
   const setPermissionById = usePermissionsStore((state) => state.setPermissionById);
@@ -27,6 +28,7 @@ export const UpdateRoleView = () => {
   //hook
   const { getPermissionForRole, createRolePermission } = useRolePermission();
   const { getPermissions } = usePermissions();
+  const { showNotification } = useNotification();
 
   useEffect(() => {
     const fetchPermissions = async () => {
@@ -49,14 +51,19 @@ export const UpdateRoleView = () => {
   };
 
   const handleUpdateRole = async () => {
-    const payload: RolePermission[] = permissions.map((permission) => ({
-      role_id: Number(id),
-      permission_id: permission.id,
-      active: permission.active,
-    }));
+    try {
+      const payload: RolePermission[] = permissions.map((permission) => ({
+        role_id: Number(id),
+        permission_id: permission.id,
+        active: permission.active,
+      }));
 
-    setRolePermission(payload);
-    await createRolePermission(payload);
+      setRolePermission(payload);
+      await createRolePermission(payload);
+      showNotification("Role updated successfully", 3000, "success");
+    } catch (error) {
+      showNotification(error.message, 3000, "error");
+    }
   };
 
   return (
@@ -66,8 +73,8 @@ export const UpdateRoleView = () => {
       </div>
       {/** content */}
       <div className="flex-auto px-8">
-        <h1 className="text-3xl">Actualizar rol</h1>
-        <h2 className="mt-8">Permisos</h2>
+        <h1 className="text-3xl">Update role</h1>
+        <h2 className="mt-8">Permissions</h2>
 
         {/* permission list */}
 
@@ -88,19 +95,12 @@ export const UpdateRoleView = () => {
             </div>
           </div>
         ))}
-
-        <pre>{JSON.stringify(role, null, 2)}</pre>
-        <pre>{JSON.stringify(permissions, null, 2)}</pre>
       </div>
       {/** actions */}
       <div className="mt-auto flex items-center space-x-2 border-t border-neutral-200 p-4">
         <button className="btn-primary" onClick={() => handleUpdateRole()}>
           Save
-        </button>{" "}
-        {/*}
-        <button className="btn-secondary" onClick={() => setData({ name: "", description: "" })}>
-          Cancel
-        </button> */}
+        </button>
       </div>
     </div>
   );
